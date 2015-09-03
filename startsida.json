@@ -1,0 +1,121 @@
+{
+	"settings": {
+		"title": "Svenskt kvalitetsregister för huvud- och halscancer",
+		"titleCssClass": "h3",
+		"menyLayout": "tabs",
+		"kollPaLaget": false,
+		"visaVälkomsttext": true,
+		"laddaInforuta": false,
+		"tillåtSparaBild": false
+	},
+
+	"welcomeData": {
+		"title": "Välkommen till Svenskt kvalitetsregister för huvud- och halscancer",
+		"message": "Här finns plats för ytterligare text."
+	},
+	
+	"menyData": [
+		{
+			"title": "Koll på läget",
+			"underMenyer": [
+                {
+                    "title": "HH - Koll på läget - statisk",
+                    "templateName": "reportTemplate",
+                    "reportName": "hh_kpl_statisk"
+                },
+                {
+                    "title": "HH – Koll på läget - parameterval",
+                    "templateName": "reportTemplate",
+                    "reportName": "hh_kpl"
+                }
+			]
+		},
+        {
+            "title": "Blanketter",
+            "underMenyer": [
+                {
+                    "title": "Andel inkomna blanketter per region och från kliniken",
+                    "templateName": "reportTemplate",
+                    "reportName": "HH_blanketter_region_klinik"
+                },
+                {
+                    "title": "Inrapportering per region, översikt",
+                    "templateName": "reportTemplate",
+                    "reportName": "HH_blanketter_region"
+                }
+            ]
+        },
+        {
+            "title": "Diagnostik",
+            "underMenyer": [
+                {
+                    "title": "Diagnosuppgifter per diagnosgrupp och år",
+                    "templateName": "reportTemplate",
+                    "reportName": "HH_Diagnos_grupp_year"
+                },
+                {
+                    "title": "Översikt per region - ICD och stadier",
+                    "templateName": "reportTemplate",
+                    "reportName": "HH_Diagnos_ICD_Stadie_region"
+                }
+            ]
+        },
+        {
+            "title": "Väntetider",
+            "underMenyer": [
+                {
+                    "title": "Ledtider för Sverige och anmälda från egna klinik",
+                    "templateName": "reportTemplate",
+                    "reportName": "HH_Ledtider_Sverige_klinik"
+                },
+                {
+                    "title": "Ledtider per egna sjukhus och diagnos",
+                    "templateName": "reportTemplate",
+                    "reportName": "HH_Ledtider_Diagnos_klinik"
+                },
+                {
+                    "title": "Ledtider til behandlingsbeslut och start av behandling",
+                    "templateName": "reportTemplate",
+                    "reportName": "HH_Ledtider_Beslut_Behstart"
+                },
+                {
+                    "title": "Ledtider till start av operation",
+                    "templateName": "reportTemplate",
+                    "reportName": "HH_Ledtider_Operation"
+                },
+                {
+                    "title": "Ledtider till start av strålbehandling",
+                    "templateName": "reportTemplate",
+                    "reportName": "HH_Ledtider_RT"
+                }
+            ]
+        },
+        {
+            "title": "Behandling",
+            "underMenyer": [
+                {
+                    "title": "Multidisciplinär konferens",
+                    "templateName": "reportTemplate",
+                    "reportName": "HH_MDK"
+                }
+            ]
+        },
+        {
+            "title": "Överlevnad",
+            "underMenyer": [
+                {
+                    "title": "Överlevnad (Är på väg)",
+                    "templateName": "reportTemplate",
+                    "reportName": "TEST_TEST"
+                }
+            ]
+        }
+	],
+
+	"indicators": [     			
+	],
+
+	"kollPaLaget": {
+	
+	}
+}
