@@ -1,23 +1,23 @@
 {
-	"settings": {
-		"title": "Svenskt kvalitetsregister för huvud- och halscancer",
-		"titleCssClass": "h3",
-		"menyLayout": "tabs",
-		"kollPaLaget": false,
-		"visaVälkomsttext": true,
-		"laddaInforuta": false,
-		"tillåtSparaBild": false
-	},
+    "settings": {
+        "title": "Svenskt kvalitetsregister för huvud- och halscancer",
+        "titleCssClass": "h3",
+        "menyLayout": "tabs",
+        "kollPaLaget": false,
+        "visaVälkomsttext": true,
+        "laddaInforuta": true,
+        "tillåtSparaBild": false
+    },
 
-	"welcomeData": {
-		"title": "Välkommen till Svenskt kvalitetsregister för huvud- och halscancer",
-		"message": "Här finns plats för ytterligare text."
-	},
-	
-	"menyData": [
-		{
-			"title": "Koll på läget",
-			"underMenyer": [
+    "welcomeData": {
+        "title": "Välkommen till Svenskt kvalitetsregister för huvud- och halscancer",
+        "message": "Här finns plats för ytterligare text."
+    },
+    
+    "menyData": [
+        {
+            "title": "Koll på läget",
+            "underMenyer": [
                 {
                     "title": "HH - Koll på läget - statisk",
                     "templateName": "reportTemplate",
@@ -28,8 +28,8 @@
                     "templateName": "reportTemplate",
                     "reportName": "hh_kpl"
                 }
-			]
-		},
+            ]
+        },
         {
             "title": "Blanketter",
             "underMenyer": [
@@ -110,12 +110,61 @@
                 }
             ]
         }
-	],
+    ],
 
-	"indicators": [     			
-	],
+    "indicators": [
+            {
+            "title": "Åldersstandardiserad incidens",
+            "type": "json",
+            "jsonSource": "/Public/Files/Huvud-_och_halscancer/indikatorer/Insidens(HH).json",
+            "highchartsConfig": {
+                "chart": { 
+                    "type": "line",
+                    "marginBottom": 100,
+                    "width": 600 
+                },      
+                "credits": false, 
+                "colors": ["#00b3f6","#ffb117", "#434348", 
+                                    "#90ed7d","#AAEEEE", "#f15c80",
+                                    "#e4d354", "#2b908f", "#f45b5b",
+                                    "#91e8e1", "#7798BF", "#8085e9"], 
+                "title": { 
+                    "text": "Åldersstandardiserad incidens per 100 000 enligt befolkningen 2000 i riket" 
+                },
+                "subtitle": { 
+                    "text": "(Urval: Läpp, tunga, spottkörtel, munbotten, mellansvalget, näs-svalgrummet (ICD-7: 140-148))" 
+                }, 
+                "yAxis": { 
+                    "title": { 
+                        "text": "Antal fall per 100 000" 
+                    } 
+                },
+                "xAxis": { 
+                    "title": { 
+                        "text": "År" 
+                    }
+                },    
+                "legend": { 
+                    "y": -10,   
+                    "floating": true,   
+                    "symbolHeight": 10, 
+                    "itemStyle": { 
+                    "fontSize":"10px"
+                  }
 
-	"kollPaLaget": {
-	
-	}
+                }, 
+                "tooltip": { 
+                    "headerFormat": "<span style='color:{series.color}'><b>{series.name}</b></span><table>", 
+                    "pointFormat": "<tr><td style='font-weight:bold;'>{point.x}: </td> <td style='padding:2px'>  {point.y} fall per 100 000</td></tr>", 
+                    "footerFormat": "</table>", 
+                    "shared": false,
+                    "useHTML": true
+                }
+            }
+        }                     
+    ],
+
+    "kollPaLaget": {
+    
+    }
 }
