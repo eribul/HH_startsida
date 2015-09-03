@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+
+<html lang="sv" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+		<title></title>
+
+		<script type="text/javascript" src="/Public/Files/virtuoso/libs/LAB.min.js"></script>
+<!--
+		<link rel="stylesheet" href="/Content/bootstrap/css/bundle.css">
+-->
+		<link rel="stylesheet" href="/Public/Files/virtuoso/libs/bootstrap-3.3.4/css/bootstrap.min.css" />
+
+		<link rel="stylesheet" href="/Public/Files/virtuoso/css/bootstrap-callout.css" />
+
+		<link rel="stylesheet" href="/Public/Files/virtuoso/css/style.css" />
+		<link rel="stylesheet" href="/Public/Files/virtuoso/css/kpl.css" />
+
+
+
+		<script type="text/javascript">
+			window.registernamn = "Huvud-_och_halscancer";
+			/*
+				BYT UT DENNA till namnet på det aktuella registret.
+				Detta är det katalognamn direkt under /Public/Files där registret har en egen katalog.
+				Ex på datahämtning: /Public/Files/registernamn/config/startsida.json
+			*/
+		</script>
+
+
+
+		<script type="text/javascript">
+			window.startsideData = {}; // object to hold att start page related data
+			window.startsideData.currentVersion = "0.2";
+			window.startsideData.loadingFailure = false;
+			window.startsideData.loadingInfoBoxError = null;
+			window.startsideData.on = {};
+			window.startsideData.on.changeTab = function(callback){
+				var iframe = document.getElementById("reportFrame") || document.getElementById("kollPaLagetFrame");
+				if( iframe && !iframe.onload ){
+					iframe.onload = function() {
+						var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+						if (iframeWin.document.body) {
+							iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
+						}
+						if( callback ) callback();
+					};
+				}else if( callback ) {
+					callback();
+				}
+			};
+
+			window.startsideData.ie_version = (function(){var c,a=3,b=document.createElement('div'),d=b.getElementsByTagName('i');while(b.innerHTML='<!--[if gt IE '+(++a)+']><i></i><![endif]-->',d[0]);return a>4?a:c})();
+
+			$LAB.setGlobalDefaults({BasePath: '/Public/Files/virtuoso/'});
+
+			if (!Date.now) {
+				Date.now = function() { return new Date().getTime(); }
+			}
+
+			if( !window.startsideData.validateJson ){
+				window.startsideData.validateJson = function(text){
+					return (/^[\],:{}\s]*$/.test(text.replace(/\\["\\\/bfnrtu]/g, '@').replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']').replace(/(?:^|:|,)(?:\s*\[)+/g, '')));
+				}
+			}
+
+			try{
+				if( window.inca.user.role.id == 6 ){
+					window.startsideData.debugMode = true;
+					console.log("Removing client caching...");
+				}else{ // Remove all the logging if we're in production and not configuring.
+					console = console || {};
+					console.log = function(){};
+				}
+			}catch(e){}
+		</script>
+
+		<!-- OFFLINE -->
+		<script type="text/javascript">
+			if( document.domain == "localhost" || document.domain == "cancercentrum.bitbucket.org"
+						|| document.domain == "10.211.55.2"//min lokala dator
+					){
+				$LAB.setGlobalDefaults({CacheBust: true});
+				$LAB.script("../offline/inca-object.js").wait(function(){
+					if( window.inca.user.role.id == 6 ){
+						window.startsideData.debugMode = true;
+						console.log("Removing client caching...");
+					}
+				});
+			}
+		</script>
+		<!--/OFFLINE -->
+	</head>
+	<body>
+		<!-- ko if: window.startsideData.debugMode -->
+			<!-- ko template: 'debugMenu' --><!--/ko-->
+		<!--/ko-->
+		<div id="progressBar" class="progress">
+			<div class="progress-bar progress-bar-striped active" role="progressbar" style="width: 10%"></div>
+		</div>
+		<div id="mainContent" class="container" style="display: none;">
+			<h1 data-bind="text: title, css: titleCssClass"></h1>
+
+			<!-- ko if: menuSystem() == 'menu' -->
+				<div class="navbar navbar-default print-hidden">
+					<div class="container-fluid">
+						<div class="navbar-header">
+							<a class="navbar-brand active" href="#" data-bind="click: startClick">Start</a>
+						</div>
+						<div class="navbar-collapse collapse">
+							<ul class="nav navbar-nav" data-bind="foreach: menuItems">
+								<li data-bind="css: { dropdown: hasChildren(), active: isSelected() }">
+									<a href="#" class="dropdown-toggle" data-bind="click: $root.selectMenuItem">
+										<!-- ko text: title --><!--/ko-->
+										<span class="caret" data-bind="visible: hasChildren()"></span>
+									</a>
+									<!-- ko if: hasChildren() -->
+										<ul class="dropdown-menu" role="menu" data-bind="foreach: menuItems">
+											<li data-bind="css: { active: isSelected() }">
+												<a href="#" data-bind="text: title, click: $root.selectMenuItem"></a>
+											</li>
+										</ul>
+									<!--/ko-->
+								</li>
+							</ul>
+							<ul class="nav navbar-nav navbar-right">
+								<li>
+									<a href="#" data-bind="click: printPage"><i class="glyphicon glyphicon-print"></i></a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div data-bind="visible: breadCrumb().length > 0">
+					<ul class="breadcrumb" data-bind="foreach: breadCrumb()">
+						<li data-bind="css: { active: $data === $root.activeTab() }">
+							<!-- ko if: hasChildren() || $data === $root.activeTab() -->
+								<span data-bind="text: title()"></span>
+							<!--/ko-->
+							<!-- ko if: !hasChildren() && $data !== $root.activeTab() -->
+								<a href="#" data-bind="text: title(), click: $root.selectMenuItem"></a>
+							<!--/ko-->
+						</li>
+					</ul>
+				</div>
+			<!--/ko-->
+			<!-- ko if: menuSystem() == 'tabs' -->
+				<div class="print-hidden">
+					<ul class="nav nav-tabs">
+						<!-- ko foreach: menuItems -->
+							<li data-bind="css: { active: isSelected }">
+								<a href="#" data-bind="click: $root.selectMenuItem">
+									<!-- ko text: title --><!--/ko-->
+									<span class="caret" data-bind="visible: hasChildren()"></span>
+								</a>
+							</li>
+						<!--/ko-->
+						<li class="pull-right">
+							<a href="#" data-bind="click: printPage">
+								<i class="glyphicon glyphicon-print"></i>
+							</a>
+						</li>
+					</ul>
+					<!-- ko foreach: menuItems -->
+						<div data-bind="visible: isSelected()">
+							<ul class="nav nav-pills" data-bind="foreach: menuItems">
+								<li data-bind="css: { active: isSelected }">
+									<a href="#" data-bind="click: $root.selectMenuItem">
+										<!-- ko text: title --><!--/ko-->
+										<span class="caret" data-bind="visible: hasChildren()"></span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					<!--/ko-->
+				</div>
+			<!--/ko-->
+
+			<div id="contentProgress" data-bind="visible: loadingTab()">
+				<div class="progress">
+					<div class="progress-bar progress-bar-striped active" role="progressbar" style="width: 10%">
+					</div>
+				</div>
+			</div>
+			<div data-bind="visible: activeTab().templateName() == 'startPageTemplate', template: 'startPageTemplate'"></div>
+			<div data-bind="visible: activeTab().templateName() != 'startPageTemplate', template: activeTab().templateName()"></div>
+		</div>
+
+		<!-- TODO: Fixa till en paramter modal -->
+		<!-- <div data-bind="template: {name: 'parameterModal', if: parameterModal.active, data: parameterModal}"></div> -->
+
+		<div id="errorMessage" class="alert alert-danger" role="alert" style="display: none;">
+			<h4>Ett fel inträffade när startsidan laddades</h4>
+		</div>
+
+		<script>
+			function getElementsByClass(className){
+				if( !document.getElementsByClassName ){
+					className = "."+className;
+					return document.querySelectorAll(className);
+				}else{
+					return document.getElementsByClassName(className);
+				}
+			}
+			$LAB.script("libs/jquery-1.11.2.min.js").wait(function(){
+					console.log("jQuery loaded!");
+					getElementsByClass("progress-bar")[0].style.width = "40%";
+
+					if( !window.startsideData.addMainError ){
+						window.startsideData.addMainError = function(e){
+							if( !$("#errorMessage").is(":visible") ){
+								$("#progressBar").hide();
+								$("#errorMessage").show();
+							}
+
+							var stack = [];
+							if( e.stack ){
+								stack = e.stack.replace(/^[^\(]+?[\n$]/gm, '')
+									.replace(/^\s+at\s+/gm, '')
+									.replace(/^Object.<anonymous>\s*\(/gm, '{anonymous}()@')
+									.split('\n');
+							}
+
+							if( window.startsideData.debugMode ){
+								var newMessage = $('<div class="errorRow">');
+								newMessage.append('<h4>'+e+(e.extra?' <small>'+e.extra+'</small>':'')+'</h4>');
+								if( stack.length > 0 ){
+									newMessage.append('<b>Stack trace:</b>');
+									for( var si in stack ){
+										newMessage.append('<p><i class="errorRowNum">'+(parseInt(si)+1)+': </i>'+stack[si]+'</p>');
+									};
+								}
+								$("#errorMessage").append(newMessage);
+							}
+						};
+					}
+				})
+				.script("load-json.js")
+				.script("inca-logo.js")
+				.script("libs/knockout-3.3.0.js")
+				.script("libs/underscore-min.js")
+				.script(window.startsideData.ie_version ? 'libs/excanvas.compiled.js' : '')
+				.script("libs/highcharts.js").wait(function(){
+					console.log("Libraries loaded!");
+					getElementsByClass("progress-bar")[0].style.width = "60%";
+				})
+				.script("ko-templates.js").wait(function(){
+					console.log("Templates loaded!");
+					getElementsByClass("progress-bar")[0].style.width = "80%";
+				})
+				.script("utils.js")
+				.script("ko-template-init.js").wait()
+				.script("init-startpage.js").wait(function(){
+					console.log("Startpage loaded!");
+					getElementsByClass("progress-bar")[0].style.width = "100%";
+				});
+		</script>
+	</body>
+</html>
