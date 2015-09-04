@@ -11,7 +11,7 @@
 
     "welcomeData": {
         "title": "Välkommen till Svenskt kvalitetsregister för huvud- och halscancer",
-        "message": "Här finns plats för ytterligare text."
+        "message": "<img src='/Public/Files/Huvud-_och_halscancer/hh_kpl/img/SweHNCR_logga.png' height='100' width='100'>"
     },
     
     "menyData": [
@@ -132,7 +132,7 @@
                     "text": "Åldersstandardiserad incidens per 100 000 enligt befolkningen 2000 i riket" 
                 },
                 "subtitle": { 
-                    "text": "(Urval: Läpp, tunga, spottkörtel, munbotten, mellansvalget, näs-svalgrummet (ICD-7: 140-148))" 
+                    "text": "(Urval: Näshåla, näsans bihålor, mellanöra och struphuvud (ICD-7: 160,161))" 
                 }, 
                 "yAxis": { 
                     "title": { 
