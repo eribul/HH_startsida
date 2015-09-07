@@ -132,7 +132,7 @@
                     "text": "Åldersstandardiserad incidens per 100 000 enligt befolkningen 2000 i riket" 
                 },
                 "subtitle": { 
-                    "text": "(Urval: Näshåla, näsans bihålor, mellanöra och struphuvud (ICD-7: 160,161))" 
+                    "text": "(Urval: Läpp, tunga, spottkörtel, munbotten, mellansvalget, näs-svalgrummet, näshåla, näsans bihålor, mellanöra och struphuvud (ICD-7: 140-148,160,161))" 
                 }, 
                 "yAxis": { 
                     "title": { 
