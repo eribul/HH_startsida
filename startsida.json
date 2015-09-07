@@ -104,9 +104,9 @@
             "title": "Överlevnad",
             "underMenyer": [
                 {
-                    "title": "Överlevnad (Är på väg)",
+                    "title": "Överlevnad",
                     "templateName": "reportTemplate",
-                    "reportName": "TEST"
+                    "reportName": "HH_Överlevnad"
                 }
             ]
         }
