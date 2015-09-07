@@ -102,13 +102,8 @@
         },
         {
             "title": "Överlevnad",
-            "underMenyer": [
-                {
-                    "title": "Överlevnad",
                     "templateName": "reportTemplate",
-                    "reportName": "HH_Överlevnad"
-                }
-            ]
+                    "reportName": "HH_Överlevnad"        
         }
     ],
 
