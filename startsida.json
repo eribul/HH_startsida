@@ -104,6 +104,11 @@
             "title": "Överlevnad",
                     "templateName": "reportTemplate",
                     "reportName": "HH_Överlevnad"        
+        },
+        {
+            "title": "Antal fall (Karta)",
+                    "templateName": "reportTemplate",
+                    "reportName": "HH_Antal_fall(Karta)"        
         }
     ],
 
