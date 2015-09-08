@@ -124,10 +124,10 @@
                                     "#e4d354", "#2b908f", "#f45b5b",
                                     "#91e8e1", "#7798BF", "#8085e9"], 
                 "title": { 
-                    "text": "Åldersstandardiserad incidens per 100 000 enligt befolkningen 2000 i riket" 
+                    "text": "Åldersstandardiserad incidens per 100 000 i Sverige" 
                 },
                 "subtitle": { 
-                    "text": "(Urval: Läpp, tunga, spottkörtel, munbotten, mellansvalget, näs-svalgrummet, näshåla, näsans bihålor, mellanöra och struphuvud (ICD-7: 140-148,160,161))" 
+                    "text": "(Urval: Läpp, tunga, spottkörtel, munbotten, mellansvalget, näs-svalgrummet, näshåla, näsans bihålor, mellanöra och struphuvud (ICD-7: 140-148,160,161). Åldersfördelningen för Sveriges befolkning år 2000 använd vid åldersstandardiseringen)" 
                 }, 
                 "yAxis": { 
                     "title": { 
