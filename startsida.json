@@ -34,6 +34,11 @@
             "title": "Blanketter",
             "underMenyer": [
                 {
+                    "title": "Antal blanketter och interna täckningsgrader",
+                    "templateName": "reportTemplate",
+                    "reportName": "hh_antblk_och_tck"
+                },
+                {
                     "title": "Andel inkomna blanketter per region och från kliniken",
                     "templateName": "reportTemplate",
                     "reportName": "HH_blanketter_region_klinik"
